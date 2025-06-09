@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import mineflayer from "mineflayer";
 
 // 1. Register Shapes client with OpenAI-compatible API
 const shapesClient = new OpenAI({
@@ -6,11 +7,25 @@ const shapesClient = new OpenAI({
   baseURL: "https://api.shapes.inc/v1",
 });
 
-const response = await shapesClient.chat.completions.create({
-  model: `shapesinc/${process.env.SHAPESINC_SHAPE_USERNAME}`,
-  messages: [
-    { role: "user", content: "hello, who are you?" }
-  ],
+// 2. Create Mineflayer bot and connect to Minecraft server
+const botOptions: mineflayer.BotOptions = {
+  host: process.env.MINECRAFT_HOST_IP,
+  port: parseInt(process.env.MINECRAFT_SERVER_PORT!),
+  username: process.env.MINEFLAYER_USERNAME || "Shape",
+  version: "1.21.4", // Can change to whichever version you want
+  auth: "offline",
+}
+
+const bot = mineflayer.createBot(botOptions);
+
+bot.on("spawn", () => {
+  console.log(`${process.env.MINEFLAYER_USERNAME} successfully spawned in`);
 });
 
-console.log(response);
+bot.on("chat", (username, message) => {
+  if (username === bot.username) return;
+  bot.chat(message);
+})
+
+bot.on("kicked", console.log);
+bot.on("error", console.log);

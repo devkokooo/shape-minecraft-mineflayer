@@ -1,7 +1,8 @@
 ## TODO
 - [x] OpenAI API, register shapes client with Shape API key
-- [ ] Mineflayer API, register pathfinder plugin
-- [ ] Server setup instructions, WSL caveats (host machine server-ip from VM)
+- [x] Minecraft server setup instructions, WSL caveats (host machine server-ip from VM)
+- [x] Connect Mineflayer API, echo example
+- [ ] Mineflayer - register pathfinder plugin
 - [ ] Natural language 'follow' command to function call tool use
 - [ ] Dynamically load available tools JSON on startup
 - [ ] Containerize deployment with Docker
