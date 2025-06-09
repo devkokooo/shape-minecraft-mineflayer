@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import mineflayer from "mineflayer";
 import { pathfinder, Movements, goals } from "mineflayer-pathfinder";
+import Logger from "./logging";
 
 // 1. Register Shapes client with OpenAI-compatible API
 const shapesClient = new OpenAI({
@@ -22,7 +23,7 @@ const bot = mineflayer.createBot(botOptions);
 bot.loadPlugin(pathfinder);
 
 bot.on("spawn", () => {
-  console.log(`${process.env.MINEFLAYER_USERNAME} successfully spawned in`);
+  Logger.log(`${process.env.MINEFLAYER_USERNAME} successfully spawned in`, "mineflayer");
 });
 
 bot.on("chat", (username, message) => {
@@ -30,17 +31,17 @@ bot.on("chat", (username, message) => {
 
   // 3. 'come' command to pathfind to player
   if (message.match(/come/gmi)) {
-    console.log("Finding target player...");
+    Logger.log("Finding target player...", "mineflayer");
     const target = bot.players[username] ? bot.players[username].entity : null;
 
     if (!target) {
-      console.log("Target not found...");
+      Logger.log("Target not found...", "mineflayer");
       bot.chat("I don't see you!");
       return;
     }
 
-    console.log("Target found! @ " + target.position);
-    console.log("Pathfinding to target now...");
+    Logger.log("Target found! @ " + target.position, "mineflayer");
+    Logger.log("Pathfinding to target now...", "mineflayer");
     const pos = target.position;
     const defaultMove = new Movements(bot);
     bot.pathfinder.setMovements(defaultMove);

@@ -3,9 +3,9 @@
 - [x] Minecraft server setup instructions, WSL caveats (host machine server-ip from VM)
 - [x] Connect Mineflayer API, echo example
 - [x] Mineflayer - register pathfinder plugin, 'come' to player command
+- [x] Unified and color coded logging (shapes, mineflayer, system server)
 - [ ] Shapes + Mineflayer - natural language 'come' command to function call
 - [ ] Dynamically load available tools JSON on startup
 - [ ] Containerize deployment with Docker
 - [ ] Shapes debugger observability mode
-- [ ] Unified and color coded logging (shapes, mineflayer, integration server)
 - [ ] Documentation - suggest Mindcraft and building your own implementation / tool use recipes
