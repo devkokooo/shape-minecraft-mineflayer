@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "mineflayer": "^4.29.0",
+    "mineflayer-pathfinder": "^2.4.5",
     "openai": "^5.2.0"
   }
 }

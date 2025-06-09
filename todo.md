@@ -2,8 +2,8 @@
 - [x] OpenAI API, register shapes client with Shape API key
 - [x] Minecraft server setup instructions, WSL caveats (host machine server-ip from VM)
 - [x] Connect Mineflayer API, echo example
-- [ ] Mineflayer - register pathfinder plugin
-- [ ] Natural language 'follow' command to function call tool use
+- [x] Mineflayer - register pathfinder plugin, 'come' to player command
+- [ ] Shapes + Mineflayer - natural language 'come' command to function call
 - [ ] Dynamically load available tools JSON on startup
 - [ ] Containerize deployment with Docker
 - [ ] Shapes debugger observability mode
