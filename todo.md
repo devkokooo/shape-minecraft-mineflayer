@@ -4,6 +4,7 @@
 - [x] Connect Mineflayer API, echo example
 - [x] Mineflayer - register pathfinder plugin, 'come' to player command
 - [x] Unified and color coded logging (shapes, mineflayer, system server)
+- [x] Chat with Shape through Mineflayer, from within the game
 - [ ] Shapes + Mineflayer - natural language 'come' command to function call
 - [ ] Dynamically load available tools JSON on startup
 - [ ] Containerize deployment with Docker

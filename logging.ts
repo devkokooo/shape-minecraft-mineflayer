@@ -17,27 +17,27 @@ const severityBadges: Record<LogSeverity, ChalkInstance> = {
 };
 
 export default class Logger {
-  static debug(message: string, service: ServiceType = "system") {
+  static debug(message: any, service: ServiceType = "system") {
     const colorFn = serviceColors[service];
     const colorSeverity = severityBadges["debug"];
     const timestamp = new Date().toISOString();
     console.debug(`${chalk.gray(timestamp)} ${colorSeverity.bold("DEBUG")} ${colorFn(`[${service}]`)} ${chalk.whiteBright(message)}`);
   }
 
-  static log(message: string, service: ServiceType = "system") {
+  static log(message: any, service: ServiceType = "system") {
     const colorFn = serviceColors[service];
     const timestamp = new Date().toISOString();
     console.log(`${chalk.gray(timestamp)} ${colorFn(`[${service}]`)} ${message}`);
   }
 
-  static warn(message: string, service: ServiceType = "system") {
+  static warn(message: any, service: ServiceType = "system") {
     const colorFn = serviceColors[service];
     const colorSeverity = severityBadges["warn"];
     const timestamp = new Date().toISOString();
     console.warn(`${chalk.gray(timestamp)} ${colorSeverity.bold("WARN")} ${colorFn(`[${service}]`)} ${chalk.yellowBright(message)}`);
   }
 
-  static error(message: string, service: ServiceType = "system") {
+  static error(message: any, service: ServiceType = "system") {
     const colorFn = serviceColors[service];
     const colorSeverity = severityBadges["error"];
     const timestamp = new Date().toISOString();

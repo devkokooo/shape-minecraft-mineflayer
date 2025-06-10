@@ -1,15 +1,9 @@
-import OpenAI from "openai";
 import mineflayer from "mineflayer";
 import { pathfinder, Movements, goals } from "mineflayer-pathfinder";
 import Logger from "./logging";
+import { chatWithShape } from "./shapes";
 
-// 1. Register Shapes client with OpenAI-compatible API
-const shapesClient = new OpenAI({
-  apiKey: process.env.SHAPESINC_API_KEY,
-  baseURL: "https://api.shapes.inc/v1",
-});
-
-// 2. Create Mineflayer bot, connect to Minecraft server, register plugins
+// Create Mineflayer bot, connect to Minecraft server, register plugins
 const botOptions: mineflayer.BotOptions = {
   host: process.env.MINECRAFT_HOST_IP,
   port: parseInt(process.env.MINECRAFT_SERVER_PORT!),
@@ -23,13 +17,15 @@ const bot = mineflayer.createBot(botOptions);
 bot.loadPlugin(pathfinder);
 
 bot.on("spawn", () => {
-  Logger.log(`${process.env.MINEFLAYER_USERNAME} successfully spawned in`, "mineflayer");
+  Logger.log(`${bot.username} successfully spawned in`, "mineflayer");
 });
 
-bot.on("chat", (username, message) => {
+bot.on("chat", async (username, message) => {
   if (username === bot.username) return;
 
-  // 3. 'come' command to pathfind to player
+  Logger.log(`<${username}> ${message}`, "mineflayer");
+
+  // 'come' command to pathfind to player
   if (message.match(/come/gmi)) {
     Logger.log("Finding target player...", "mineflayer");
     const target = bot.players[username] ? bot.players[username].entity : null;
@@ -47,7 +43,15 @@ bot.on("chat", (username, message) => {
     bot.pathfinder.setMovements(defaultMove);
     bot.pathfinder.setGoal(new goals.GoalNear(pos.x, pos.y, pos.z, 1));
   }
-})
+  else {
+    const response = await chatWithShape(message);
+
+    if (response && response.length) {
+      Logger.log(`<${bot.username}> ${response}`, "mineflayer");
+      bot.chat(response);
+    }
+  }
+});
 
 bot.on("death", () => {
   bot.removeAllListeners();
