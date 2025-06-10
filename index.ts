@@ -1,5 +1,5 @@
 import mineflayer from "mineflayer";
-import { pathfinder, Movements, goals } from "mineflayer-pathfinder";
+import { pathfinder } from "mineflayer-pathfinder";
 import Logger from "./logging";
 import { chatWithShape } from "./shapes";
 
@@ -12,7 +12,7 @@ const botOptions: mineflayer.BotOptions = {
   auth: "offline",
 }
 
-const bot = mineflayer.createBot(botOptions);
+export const bot = mineflayer.createBot(botOptions);
 
 bot.loadPlugin(pathfinder);
 
@@ -25,32 +25,13 @@ bot.on("chat", async (username, message) => {
 
   Logger.log(`<${username}> ${message}`, "mineflayer");
 
-  // 'come' command to pathfind to player
-  if (message.match(/come/gmi)) {
-    Logger.log("Finding target player...", "mineflayer");
-    const target = bot.players[username] ? bot.players[username].entity : null;
+  const response = await chatWithShape(message);
+  if (!response) return;
 
-    if (!target) {
-      Logger.log("Target not found...", "mineflayer");
-      bot.chat("I don't see you!");
-      return;
-    }
-
-    Logger.log("Target found! @ " + target.position, "mineflayer");
-    Logger.log("Pathfinding to target now...", "mineflayer");
-    const pos = target.position;
-    const defaultMove = new Movements(bot);
-    bot.pathfinder.setMovements(defaultMove);
-    bot.pathfinder.setGoal(new goals.GoalNear(pos.x, pos.y, pos.z, 1));
-  }
-  else {
-    const response = await chatWithShape(message);
-
-    if (response && response.length) {
-      Logger.log(`<${bot.username}> ${response}`, "mineflayer");
-      bot.chat(response);
-    }
-  }
+  Logger.log("Response received!");
+  Logger.log("Sending return message to Mineflayer bot...");
+  Logger.log(`<${bot.username}> ${response}`, "mineflayer");
+  bot.chat(response);
 });
 
 bot.on("death", () => {

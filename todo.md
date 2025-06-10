@@ -5,8 +5,8 @@
 - [x] Mineflayer - register pathfinder plugin, 'come' to player command
 - [x] Unified and color coded logging (shapes, mineflayer, system server)
 - [x] Chat with Shape through Mineflayer, from within the game
-- [ ] Shapes + Mineflayer - natural language 'come' command to function call
-- [ ] Dynamically load available tools JSON on startup
+- [x] Shapes + Mineflayer - natural language 'come' command to function call
+- [x] Dynamically access available tools
 - [ ] Containerize deployment with Docker
 - [ ] Shapes debugger observability mode
 - [ ] Documentation - suggest Mindcraft and building your own implementation / tool use recipes
