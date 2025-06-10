@@ -2,6 +2,8 @@
 
 This example shows you how to integrate the Shapes API with your local Minecraft server via Mineflayer
 
+[Generate your Shapes API key](https://shapes.inc/developer) (Shape-specific key recommended)
+
 ## Setup: Minecraft Server
 
 In this example we'll use version `1.21.4`, which you can download the server jar [here](https://mcversions.net/download/1.21.4).
