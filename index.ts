@@ -1,7 +1,7 @@
 import mineflayer from "mineflayer";
 import { pathfinder } from "mineflayer-pathfinder";
-import Logger from "./logging";
-import { chatWithShape } from "./shapes";
+import Logger from "./src/logging";
+import { chatWithShape } from "./src/shapes";
 
 // Create Mineflayer bot, connect to Minecraft server, register plugins
 const botOptions: mineflayer.BotOptions = {

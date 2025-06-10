@@ -1,5 +1,5 @@
 import type OpenAI from "openai";
-import { bot } from ".";
+import { bot } from "..";
 import { goals, Movements } from "mineflayer-pathfinder";
 import Logger from "./logging";
 
