@@ -5,7 +5,8 @@ import { agentTools, TOOL_MAPPING } from "./tools";
 // Register Shapes client with OpenAI-compatible API
 const shapesClient = new OpenAI({
   apiKey: process.env.SHAPESINC_API_KEY,
-  baseURL: "https://api.shapes.inc/v1",
+  baseURL: process.env.DEBUG === "true"
+    ? "http://localhost:8090/v1" : "https://api.shapes.inc/v1",
 });
 
 export async function chatWithShape(message: string): Promise<string | undefined | null> {
